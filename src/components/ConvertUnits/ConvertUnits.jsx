@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import Select from "react-select";
 import { useAllData, useUnitsType, useFullNames, useBidirectionalConvert1, useBidirectionalConvert2 } from "../../hooks";
 import { searchKeyUnit } from "../../utils";
+import UnitSelector from "../UnitSelector";
 
 function ConvertUnits() {
   const [selectUnit, setSelectUnit] = useState(''); // Save unit choice
@@ -35,63 +37,39 @@ function ConvertUnits() {
     setInput2(e.target.value)
   };
 
+  const magnitudesOptions = Object.keys(fullNameUnits.data).map(magnitude => ({
+    value: magnitude,
+    label: magnitude.toUpperCase()
+  }));
+
   return (
     <div>
       <h1>Units Forge</h1>
 
       <h2>Select a magnitude:</h2>
 
-      <select
-        value={selectMagnitude}
-        onChange={(e) => setSelectMagnitude(e.target.value)} 
-      >
-        <option>---Select a magnitude---</option>
-        {Object.keys(fullNameUnits.data).map(magnitude => (
-          <option 
-            key={magnitude}
-            value={magnitude} 
-          >
-            {magnitude.toUpperCase()}
-          </option>
-        ))}
-      </select>
+      <Select
+        options={magnitudesOptions}
+        value={magnitudesOptions.find(option => option.value === selectMagnitude)}
+        onChange={(selectedOption) => setSelectMagnitude(selectedOption?.value)} 
+        placeholder="Select a magnitude"
+      />
 
-      <select
+      <UnitSelector 
         value={selectUnit}
-        onChange={(e) => setSelectUnit(e.target.value)}
-      >
-        <option>---Select a unit---</option>
-        {unitsForMagn.data 
-          && unitsForMagn.data[selectMagnitude] 
-          && unitsForMagn.data[selectMagnitude].map(unit =>
-          <option
-            key={unit} 
-            value={unit}
-          >
-            {unit}
-          </option>
-        )}
-      </select>
-      <select
+        onChange={setSelectUnit}
+        unitsData={unitsForMagn.data}
+        selectMagnitude={selectMagnitude}
+      />
+      <UnitSelector 
         value={selectUnit2}
-        onChange={(e) => setSelectUnit2(e.target.value)}
-      >
-        <option>---Select a unit---</option>
-        {unitsForMagn.data 
-          && unitsForMagn.data[selectMagnitude] 
-          && unitsForMagn.data[selectMagnitude].map(unit =>
-          <option
-            key={unit} 
-            value={unit}
-          >
-            {unit}
-          </option>
-        )}
-      </select>
+        onChange={setSelectUnit2}
+        unitsData={unitsForMagn.data}
+        selectMagnitude={selectMagnitude}
+      />
 
       <p>hola {fromUnit}</p>
       <p>hola {toUnit}</p>
-
 
       <label>
         Input your value:
@@ -108,7 +86,6 @@ function ConvertUnits() {
           onChange={handleInput2}
         />
       </label>
-
 
       <p>{unitConvert.data.result}</p>
       <p>{unitConvert2.data.result}</p>
