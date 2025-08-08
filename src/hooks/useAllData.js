@@ -20,7 +20,7 @@ export function useAllData() {
           data : data
         }));
       } catch (error) {
-          setAllData(prev ({
+          setAllData(prev => ({
             ...prev,
             error: error.message
           }));
