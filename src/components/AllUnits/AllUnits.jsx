@@ -1,36 +1,58 @@
-import { useState, useEffect } from "react";
+import { useAllData } from "../../hooks";
+import styles from "./AllUnits.module.css"
 
 function AllUnits() {
-    const [units, setUnits] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const { data } = useAllData();
 
-    useEffect(() => {
-        fetch('https://unitbridgeapi.pythonanywhere.com/v1/units-available')
-            .then(response => response.json())
-            .then(data => { 
-                setUnits(data);
-                setLoading(false); 
-            })
-            .catch(err => {
-                console.log('Error when request the data.');
-                setLoading(false);
-            });
-    }, []);
+  return (
+    <div className="container-fluid px-3 pt-3">
+      {/* small nav with all magnitudes */}
+      <nav className={`${styles.nav} flex-wrap justify-content-center`}>
+        {Object.keys(data).map(category => (
+          <a
+            key={category}
+            className={`${styles.navLink} text-capitalize`}
+            href={`#${category}`}
+          >
+            {category}
+          </a>
+        ))}
+      </nav>
 
-    return (
-        <div>
-            <h1>All Units Available</h1>
-            {loading ? (
-                <p>Loading units available...</p>
-            ) : (
-                <ul>
-                    {units.map((unit, index) => (
-                        <li key={index}>{unit}</li>
-                    ))}
-                </ul>
-            )}
+      {/* table with all info data */}
+      {Object.keys(data).map(category => (
+        <div key={category} id={category}>
+          <h2 className="text-capitalize">{category}</h2>
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered table-hover">
+              <thead className="table-dark">
+                <tr>
+                  <th>Name</th>
+                  <th>Symbol</th>
+                  <th>System</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(data[category]).map(unitKey => {
+                  const unit = data[category][unitKey];
+                  return (
+                    <tr key={unitKey}>
+                      <td className="text-capitalize">{unit.name}</td>
+                      <td>{unit.symbol}</td>
+                      <td>{unit.system}</td>
+                      <td>{unit.description}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-    )
+      ))}
+    </div>
+    
+  )
 }
 
 export default AllUnits;

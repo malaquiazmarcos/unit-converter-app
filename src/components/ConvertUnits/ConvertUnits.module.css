@@ -1,0 +1,52 @@
+/* buttons */
+.btnCustom {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #7A9AAD;
+}
+
+.active:hover {
+  background-color: #6B8A9D;
+}
+
+.inactive {
+  background-color: #A69B88;
+}
+
+.inactive:hover {
+  background-color: #968A7A;
+}
+
+/* inputs */
+.inputStyles {
+  background-color: #F8F6F0;
+  border: 1px solid #A69B88;
+  color: #333333;
+  width: 50%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.inputStyles:focus {
+  border-color: #7A9AAD;
+}
+
+/* result */
+.result {
+  color: #333333;        /* texto normal */
+  background-color: #F8F6F0;  /* fondo suave como los inputs */
+  border: 2px solid #A69B88;  /* borde igual al de los inputs */
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}

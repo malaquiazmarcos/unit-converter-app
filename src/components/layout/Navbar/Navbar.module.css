@@ -1,0 +1,38 @@
+
+.navbar {
+    color: #FFFFFF;
+    background-color: #8B8680;
+}
+
+/* all links */
+.navbarLink {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* logo only */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.logo:hover {
+    color: #E8DCC0;
+    transform: scale(1.05);
+}
+
+/* other link only */
+.noLogo {
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.noLogo:hover {
+    color: #E8DCC0;
+    transform: scale(1.05);
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+/* fetch all units from one magnitude selected */
 export function useUnitsType(selectMagnitude) {
   const [unitsForMagn, setUnitsForMagn] = useState({
       data: [],

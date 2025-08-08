@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+/* fetch all available data unit from the API */
 export function useAllData() {
   const [allData, setAllData] = useState({
     data: [],

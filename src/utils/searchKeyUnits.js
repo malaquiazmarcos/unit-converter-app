@@ -1,4 +1,5 @@
 
+/* search the unit key (abbreviation name) since fullname for input in the endpoint */
 const searchKeyUnit = (allData, magnitude, fullNameUnit) => {    
     const unitMagnitude = allData.data[magnitude];
 

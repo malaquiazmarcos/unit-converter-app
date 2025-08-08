@@ -1,16 +1,24 @@
 import { useState, useEffect } from "react";
 
+/* fetch data in the API data for convert unit - input 1 */
 export function useBidirectionalConvert1(input1, selectMagnitude, fromUnit, toUnit) {
   const [unitConvert, setUnitConvert] = useState({
     data: [],
-    loading: true,
+    loading: false,
     error: null
   });
 
   useEffect(() => {
     if (!input1 || !selectMagnitude || !fromUnit || !toUnit) {
-      return; 
+      return;
     }
+
+    setUnitConvert(prev => ({
+      ...prev,
+      loading: true, 
+      error: null
+    }));
+
     const timeoutId = setTimeout(() => {
       const fetchData = async () => {
         try {
@@ -25,17 +33,20 @@ export function useBidirectionalConvert1(input1, selectMagnitude, fromUnit, toUn
           const data = await response.json()
           setUnitConvert(prev => ({
             ...prev,
-            data: data
+            data: data, 
+            loading: false,
+            error: null
           }))
         } catch (error) {
           setUnitConvert(prev => ({
             ...prev,
+            loading: false,
             error: error.message
           }))
         }
       };
       fetchData();
-  }, 2000);
+  }, 500); // time to fetch the API
 
   return () => clearTimeout(timeoutId);
   }, [input1, selectMagnitude, fromUnit, toUnit]);
@@ -43,10 +54,11 @@ export function useBidirectionalConvert1(input1, selectMagnitude, fromUnit, toUn
   return unitConvert;
 };
 
+/* fetch data in the API data for convert unit - input 2 */
 export function useBidirectionalConvert2(input2, selectMagnitude, fromUnit, toUnit) {
   const [unitConvert2, setUnitConvert2] = useState({
     data: [],
-    loading: true,
+    loading: false,
     error: null
   });
 
@@ -54,6 +66,13 @@ export function useBidirectionalConvert2(input2, selectMagnitude, fromUnit, toUn
     if (!input2 || !selectMagnitude || !fromUnit || !toUnit) {
       return; 
     }
+
+    setUnitConvert2(prev => ({
+      ...prev,
+      loading: true, 
+      error: null
+    }));
+
     const timeoutId = setTimeout(() => {
       const fetchData = async () => {
         try {
@@ -68,17 +87,20 @@ export function useBidirectionalConvert2(input2, selectMagnitude, fromUnit, toUn
           const data = await response.json()
           setUnitConvert2(prev => ({
             ...prev,
-            data: data
+            data: data,
+            loading: false, 
+            error: null
           }))
         } catch (error) {
           setUnitConvert2(prev => ({
             ...prev,
+            loading: false,
             error: error.message
           }))
         }
       };
       fetchData();
-    }, 2000);
+    }, 500);
 
     return () => clearTimeout(timeoutId);
   }, [input2, selectMagnitude, toUnit, fromUnit]);

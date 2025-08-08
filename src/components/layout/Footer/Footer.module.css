@@ -1,0 +1,12 @@
+
+.footer {
+  background: #5D5A54; 
+  color: #CAC2AD;
+  font-size: 0.9rem;
+  margin-top: 0 !important;
+}
+
+.footerLink a {
+  color: #E8DCC0;
+}
+

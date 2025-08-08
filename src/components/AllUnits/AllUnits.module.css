@@ -1,0 +1,31 @@
+
+/* nav */
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  background-color: #FCF8F2;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  justify-content: center;
+}
+
+.navLink {
+  background-color: #7A9AAD; 
+  color: #FFFFFF;            
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.navLink:hover,
+.navLink:focus {
+  background-color: #6B8A9D;  
+  color: #FFFFFF;
+}
+
+
