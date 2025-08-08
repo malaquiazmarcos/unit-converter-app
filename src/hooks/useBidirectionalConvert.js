@@ -29,7 +29,8 @@ export function useBidirectionalConvert1(input1, selectMagnitude, fromUnit, toUn
             unit_to: toUnit
           });
 
-          const response = await fetch(`/api/v1/unit-convert?${params.toString()}`);
+          /* const response = await fetch(`/api/v1/unit-convert?${params.toString()}`); */
+          const response = await fetch(`https://unitbridgeapi.pythonanywhere.com/v1/unit-convert?${params.toString()}`);
           const data = await response.json()
           setUnitConvert(prev => ({
             ...prev,
@@ -83,7 +84,8 @@ export function useBidirectionalConvert2(input2, selectMagnitude, fromUnit, toUn
             unit_to: fromUnit
           });
 
-          const response = await fetch(`/api/v1/unit-convert?${params.toString()}`);
+          /* const response = await fetch(`/api/v1/unit-convert?${params.toString()}`); */
+          const response = await fetch(`https://unitbridgeapi.pythonanywhere.com/v1/unit-convert?${params.toString()}`);
           const data = await response.json()
           setUnitConvert2(prev => ({
             ...prev,

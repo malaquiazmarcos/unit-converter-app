@@ -11,7 +11,8 @@ export function useAllData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/v1/all-data');
+        /* const response = await fetch('/api/v1/all-data'); */
+        const response = await fetch('https://unitbridgeapi.pythonanywhere.com/v1/all-data');
         const data = await response.json();
 
         setAllData(prev => ({

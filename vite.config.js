@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
+  /* server: {
     proxy: {
       '/api': {
         target: 'https://unitbridgeapi.pythonanywhere.com',
@@ -12,7 +12,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
-  }
+  } */
 })
 
 
